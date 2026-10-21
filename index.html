@@ -8,13 +8,20 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Бегущая строка с мемами -->
+  <!-- Фоновые элементы -->
+  <div class="bg-blobs">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+  </div>
+
+  <!-- Бегущая строка -->
   <div class="ticker">
     <div class="ticker__content">
       <span>Тот самый чат, где мы обсуждаем всё и ни о чём ✦ </span>
@@ -28,16 +35,14 @@
     </div>
   </div>
 
-  <!-- Главный экран -->
   <header class="hero">
-    <div class="hero__content">
+    <div class="hero__content reveal">
       <div class="badge">Est. 2018</div>
       <h1 class="hero__title">Наша<br>Банда</h1>
       <p class="hero__subtitle">
         Здесь собраны наши лучшие моменты, самые тупые шутки и доказательства того, что мы вместе не зря.
       </p>
       
-      <!-- Коллаж (замени src на свои фото) -->
       <div class="hero__collage">
         <div class="collage-img c1"><img src="https://picsum.photos/200/300?random=1" alt=""></div>
         <div class="collage-img c2"><img src="https://picsum.photos/200/300?random=2" alt=""></div>
@@ -47,16 +52,17 @@
     </div>
   </header>
 
-  <!-- Состав банды -->
   <section class="section crew">
-    <div class="container">
+    <div class="container reveal">
       <h2 class="section-title">Кто мы такие</h2>
       <div class="crew-grid">
         
-        <!-- Карточка друга -->
         <article class="crew-card">
-          <div class="crew-card__img">
-            <img src="https://picsum.photos/100/100?random=5" alt="Друг 1">
+          <!-- Обертка для эффекта стикера -->
+          <div class="crew-card__img-wrap">
+            <div class="crew-card__img">
+              <img src="https://picsum.photos/100/100?random=5" alt="Друг 1">
+            </div>
           </div>
           <div class="crew-card__info">
             <h3>Азамат</h3>
@@ -65,10 +71,11 @@
           <div class="crew-card__tag">Душа компании</div>
         </article>
 
-        <!-- Карточка друга -->
         <article class="crew-card">
-          <div class="crew-card__img">
-            <img src="https://picsum.photos/100/100?random=6" alt="Друг 2">
+          <div class="crew-card__img-wrap">
+            <div class="crew-card__img">
+              <img src="https://picsum.photos/100/100?random=6" alt="Друг 2">
+            </div>
           </div>
           <div class="crew-card__info">
             <h3>Бек</h3>
@@ -77,10 +84,11 @@
           <div class="crew-card__tag">Главный тормоз</div>
         </article>
 
-        <!-- Карточка друга -->
         <article class="crew-card">
-          <div class="crew-card__img">
-            <img src="https://picsum.photos/100/100?random=7" alt="Друг 3">
+          <div class="crew-card__img-wrap">
+            <div class="crew-card__img">
+              <img src="https://picsum.photos/100/100?random=7" alt="Друг 3">
+            </div>
           </div>
           <div class="crew-card__info">
             <h3>Данияр</h3>
@@ -93,34 +101,32 @@
     </div>
   </section>
 
-  <!-- Галерея моментов -->
   <section class="section moments">
-    <div class="container">
+    <div class="container reveal">
       <h2 class="section-title">Наши моменты</h2>
+      <p class="section-subtitle">(нажми на фото, чтобы рассмотреть)</p>
+      
       <div class="polaroid-grid">
-        
-        <div class="polaroid">
+        <div class="polaroid" onclick="this.classList.toggle('active')">
           <img src="https://picsum.photos/300/300?random=8" alt="Момент 1">
           <div class="polaroid__caption">Тот самый шашлык</div>
         </div>
 
-        <div class="polaroid p-tilt">
+        <div class="polaroid p-tilt" onclick="this.classList.toggle('active')">
           <img src="https://picsum.photos/300/300?random=9" alt="Момент 2">
           <div class="polaroid__caption">Когда забыли ключи</div>
         </div>
 
-        <div class="polaroid">
+        <div class="polaroid" onclick="this.classList.toggle('active')">
           <img src="https://picsum.photos/300/300?random=10" alt="Момент 3">
           <div class="polaroid__caption">Сон на парах</div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Генератор мемов -->
   <section class="section generator">
-    <div class="container">
+    <div class="container reveal">
       <div class="generator__box">
         <h2>Генератор цитат</h2>
         <p>Нажми на кнопку, чтобы вспомнить, как мы общаемся.</p>
