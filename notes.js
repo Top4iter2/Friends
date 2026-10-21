@@ -1,18 +1,15 @@
 /* =========================================================
-   ЗАПИСКИ — сохраняются в localStorage
+   ЗАПИСКИ — localStorage
    ========================================================= */
-const NOTES_KEY = 'our-notes-v1';
+const NOTES_KEY = 'our-notes-v2';
 
 function loadNotes() {
-  try {
-    return JSON.parse(localStorage.getItem(NOTES_KEY)) || [];
-  } catch {
-    return [];
-  }
+  try { return JSON.parse(localStorage.getItem(NOTES_KEY)) || []; }
+  catch { return []; }
 }
 
 function saveNotes(notes) {
-  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+  try { localStorage.setItem(NOTES_KEY, JSON.stringify(notes)); } catch {}
 }
 
 let notes = loadNotes();
@@ -20,16 +17,23 @@ let notes = loadNotes();
 const notesGrid = document.getElementById('notesGrid');
 const noteForm = document.getElementById('noteForm');
 
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
 function renderNotes() {
   if (!notesGrid) return;
   notesGrid.innerHTML = '';
   if (!notes.length) {
-    notesGrid.innerHTML = '<p style="color: var(--text-muted); font-style: italic; padding: 1rem;">Пока нет записок. Оставьте первую ♡</p>';
+    notesGrid.innerHTML = '<p style="color: var(--text-muted); font-style: italic; padding: 1rem; grid-column: 1/-1;">Пока нет записок. Оставьте первую ♡</p>';
     return;
   }
-  [...notes].reverse().forEach(note => {
+  [...notes].reverse().forEach((note, i) => {
     const card = document.createElement('article');
     card.className = 'note';
+    card.style.animationDelay = `${Math.min(i * 40, 400)}ms`;
     const date = new Date(note.date).toLocaleDateString('ru-RU', {
       day: 'numeric', month: 'long', year: 'numeric'
     });
@@ -48,12 +52,6 @@ function renderNotes() {
   });
 }
 
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  })[c]);
-}
-
 if (noteForm) {
   noteForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -62,13 +60,13 @@ if (noteForm) {
     if (!author || !text) return;
     notes.push({
       id: crypto.randomUUID(),
-      author,
-      text,
+      author, text,
       date: new Date().toISOString(),
     });
     saveNotes(notes);
     renderNotes();
     noteForm.reset();
+    document.getElementById('noteAuthor').focus();
   });
 }
 
