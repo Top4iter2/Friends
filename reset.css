@@ -7,16 +7,19 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #ff7eb3 #0a0812;
 }
 
 body {
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-img, picture, video {
+img, picture, video, canvas {
   display: block;
   max-width: 100%;
 }
@@ -31,14 +34,18 @@ button, input, textarea, select {
 
 button { cursor: pointer; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
 ul, ol { list-style: none; }
 
 ::selection {
-  background: #ff7eb3;
-  color: #0a0812;
+  background: rgba(255, 126, 179, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0812; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a78bfa, #ff7eb3);
+  border-radius: 4px;
 }
