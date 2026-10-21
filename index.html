@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Наше личное пространство для роста и воспоминаний">
-  <title>мы · растём вместе</title>
+  <meta name="theme-color" content="#0a0812">
+  <title>растём вместе · наше</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -17,8 +18,8 @@
   <div class="cursor-glow" id="cursorGlow"></div>
   <div class="noise"></div>
 
-  <nav class="nav">
-    <a href="#hero" class="nav__logo">Мы<span>·</span></a>
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav__logo">мы<span>·</span></a>
     <ul class="nav__list">
       <li><a href="#about">О нас</a></li>
       <li><a href="#growth">Рост</a></li>
@@ -27,26 +28,41 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ========== HERO ========== -->
   <header class="hero" id="hero">
-    <div class="hero__bg"></div>
+    <div class="hero__bg">
+      <div class="hero__blob hero__blob--1"></div>
+      <div class="hero__blob hero__blob--2"></div>
+      <div class="hero__blob hero__blob--3"></div>
+    </div>
+    <canvas class="hero__particles" id="particles"></canvas>
+
     <div class="hero__content">
-      <p class="hero__eyebrow">наше маленькое пространство</p>
-      <p class="hero__subtitle">растём · мечтаем · вспоминаем</p>
-      <div class="hero__counter">
+      <p class="hero__eyebrow">
+        <span class="hero__eyebrow-line"></span>
+        наше маленькое пространство
+        <span class="hero__eyebrow-line"></span>
+      </p>
+
+      <div class="hero__counter-wrap">
         <span class="hero__counter-num" id="daysTogether">0</span>
         <span class="hero__counter-label">дней вместе</span>
       </div>
+
+      <p class="hero__subtitle">
+        растём <em>·</em> мечтаем <em>·</em> вспоминаем
+      </p>
+
       <a href="#about" class="hero__scroll">
         <span>листай вниз</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </a>
     </div>
   </header>
 
-  <!-- ABOUT -->
+  <!-- ========== ABOUT ========== -->
   <section class="about section" id="about">
     <div class="container">
       <div class="section__head">
@@ -54,17 +70,20 @@
         <h2 class="section__title">Двое, <em>растущих</em> вместе</h2>
       </div>
       <div class="about__grid">
-        <div class="about__card reveal">
+        <div class="spotlight about__card reveal">
+          <div class="about__card-glow"></div>
           <div class="about__card-icon">✦</div>
           <h3>Кто мы</h3>
           <p>Мы — Родя и я. Два человека, которые выбрали не просто быть рядом, а становиться лучше каждый день.</p>
         </div>
-        <div class="about__card reveal">
+        <div class="spotlight about__card reveal">
+          <div class="about__card-glow"></div>
           <div class="about__card-icon">❋</div>
           <h3>Зачем сайт</h3>
           <p>Это наше личное пространство: трекер роста, хранилище воспоминаний и тихое место, куда можно вернуться вдвоём.</p>
         </div>
-        <div class="about__card reveal">
+        <div class="spotlight about__card reveal">
+          <div class="about__card-glow"></div>
           <div class="about__card-icon">✧</div>
           <h3>Куда идём</h3>
           <p>Ставим цели, фиксируем победы, собираем моменты. Всё, что делает нас сильнее — здесь, в одном месте.</p>
@@ -73,7 +92,7 @@
     </div>
   </section>
 
-  <!-- GROWTH -->
+  <!-- ========== GROWTH ========== -->
   <section class="growth section" id="growth">
     <div class="container">
       <div class="section__head">
@@ -81,34 +100,57 @@
         <h2 class="section__title">Наши <em>цели</em></h2>
       </div>
       <p class="section__desc">Добавляйте цели для себя и для Роди. Каждый шаг считается.</p>
+
       <div class="growth__grid">
-        <div class="growth__panel reveal">
-          <h3 class="growth__panel-title">Родя</h3>
+        <div class="spotlight growth__panel reveal">
+          <div class="growth__panel-head">
+            <h3 class="growth__panel-title">Родя</h3>
+            <div class="growth__panel-progress">
+              <div class="growth__panel-bar"><span></span></div>
+              <small data-progress="rodiya">0%</small>
+            </div>
+          </div>
           <form class="goal-form" data-owner="rodiya">
-            <input type="text" placeholder="Новая цель..." maxlength="80" required>
-            <button type="submit" aria-label="Добавить">+</button>
+            <input type="text" placeholder="Новая цель..." maxlength="80" required autocomplete="off">
+            <button type="submit" aria-label="Добавить">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
           </form>
           <ul class="goal-list" id="goals-rodiya"></ul>
         </div>
-        <div class="growth__panel reveal">
-          <h3 class="growth__panel-title">Я</h3>
+
+        <div class="spotlight growth__panel reveal">
+          <div class="growth__panel-head">
+            <h3 class="growth__panel-title">Я</h3>
+            <div class="growth__panel-progress">
+              <div class="growth__panel-bar"><span></span></div>
+              <small data-progress="me">0%</small>
+            </div>
+          </div>
           <form class="goal-form" data-owner="me">
-            <input type="text" placeholder="Новая цель..." maxlength="80" required>
-            <button type="submit" aria-label="Добавить">+</button>
+            <input type="text" placeholder="Новая цель..." maxlength="80" required autocomplete="off">
+            <button type="submit" aria-label="Добавить">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
           </form>
           <ul class="goal-list" id="goals-me"></ul>
         </div>
       </div>
+
       <div class="growth__stats reveal">
-        <div class="stat">
+        <div class="spotlight stat">
           <span class="stat__num" id="statTotal">0</span>
           <span class="stat__label">всего целей</span>
         </div>
-        <div class="stat">
+        <div class="spotlight stat">
           <span class="stat__num" id="statDone">0</span>
           <span class="stat__label">достигнуто</span>
         </div>
-        <div class="stat">
+        <div class="spotlight stat">
           <span class="stat__num" id="statPercent">0%</span>
           <span class="stat__label">общий прогресс</span>
         </div>
@@ -116,7 +158,7 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
+  <!-- ========== GALLERY ========== -->
   <section class="gallery section" id="gallery">
     <div class="container">
       <div class="section__head">
@@ -128,7 +170,7 @@
     </div>
   </section>
 
-  <!-- NOTES -->
+  <!-- ========== NOTES ========== -->
   <section class="notes section" id="notes">
     <div class="container">
       <div class="section__head">
@@ -136,11 +178,18 @@
         <h2 class="section__title">Слова <em>друг другу</em></h2>
       </div>
       <p class="section__desc">Оставляйте записки — поддержку, признания, мечты.</p>
-      <form class="note-form" id="noteForm">
-        <input type="text" id="noteAuthor" placeholder="От кого" maxlength="30" required>
+
+      <form class="note-form reveal" id="noteForm">
+        <input type="text" id="noteAuthor" placeholder="От кого" maxlength="30" required autocomplete="off">
         <textarea id="noteText" placeholder="Твои слова..." maxlength="300" required></textarea>
-        <button type="submit">Оставить записку</button>
+        <button type="submit">
+          <span>Оставить</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </form>
+
       <div class="notes__grid" id="notesGrid"></div>
     </div>
   </section>
@@ -163,7 +212,10 @@
 
   <!-- MUSIC TOGGLE -->
   <button class="music-toggle" id="musicToggle" aria-label="Включить музыку">
-    <span class="music-toggle__icon">♪</span>
+    <span class="music-toggle__ring"></span>
+    <svg class="music-toggle__icon" viewBox="0 0 24 24" fill="none">
+      <path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </button>
 
   <script src="js/main.js"></script>
