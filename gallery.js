@@ -1,6 +1,6 @@
 /* =========================================================
    ФОТО — редактируй этот массив
-   Просто положи фото в папку images/ и допиши строку
+   Положи фото в images/ и добавь строки
    ========================================================= */
 const PHOTOS = [
   { src: 'images/photo-1.jpg', caption: 'Наш первый день' },
@@ -26,15 +26,18 @@ function renderGallery() {
   PHOTOS.forEach((photo, i) => {
     const item = document.createElement('div');
     item.className = 'gallery__item';
-    item.style.animationDelay = `${i * 60}ms`;
+    item.style.animationDelay = `${i * 70}ms`;
+
     const img = document.createElement('img');
     img.src = photo.src;
     img.alt = photo.caption;
     img.loading = 'lazy';
     img.onerror = () => { img.style.display = 'none'; };
+
     const cap = document.createElement('p');
     cap.className = 'gallery__caption';
     cap.textContent = photo.caption;
+
     item.appendChild(img);
     item.appendChild(cap);
     item.addEventListener('click', () => openLightbox(i));
@@ -43,7 +46,6 @@ function renderGallery() {
 }
 
 function openLightbox(index) {
-  if (!lightbox) return;
   activeIndex = index;
   updateLightbox();
   lightbox.classList.add('is-open');
