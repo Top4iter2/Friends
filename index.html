@@ -1,150 +1,93 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f4f1ea">
-  <title>Наша Банда</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Caveat:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a10" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Киноархив</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Фоновые элементы -->
-  <div class="bg-blobs">
-    <div class="blob blob--1"></div>
-    <div class="blob blob--2"></div>
-    <div class="blob blob--3"></div>
-  </div>
-
-  <!-- Бегущая строка -->
-  <div class="ticker">
-    <div class="ticker__content">
-      <span>Тот самый чат, где мы обсуждаем всё и ни о чём ✦ </span>
-      <span>«Я опаздываю на 5 минут» (прошло 40 минут) ✦ </span>
-      <span>Кто скидывал тот мем про жабу? ✦ </span>
-      <span>Скиньте денег на шаурму ✦ </span>
-      <span>Тот самый чат, где мы обсуждаем всё и ни о чём ✦ </span>
-      <span>«Я опаздываю на 5 минут» (прошло 40 минут) ✦ </span>
-      <span>Кто скидывал тот мем про жабу? ✦ </span>
-      <span>Скиньте денег на шаурму ✦ </span>
-    </div>
-  </div>
-
-  <header class="hero">
-    <div class="hero__content reveal">
-      <div class="badge">Est. 2018</div>
-      <h1 class="hero__title">Наша<br>Банда</h1>
-      <p class="hero__subtitle">
-        Здесь собраны наши лучшие моменты, самые тупые шутки и доказательства того, что мы вместе не зря.
-      </p>
-      
-      <div class="hero__collage">
-        <div class="collage-img c1"><img src="https://picsum.photos/200/300?random=1" alt=""></div>
-        <div class="collage-img c2"><img src="https://picsum.photos/200/300?random=2" alt=""></div>
-        <div class="collage-img c3"><img src="https://picsum.photos/200/300?random=3" alt=""></div>
-        <div class="collage-img c4"><img src="https://picsum.photos/200/300?random=4" alt=""></div>
+  <header class="app-header">
+    <div class="app-header__row">
+      <div>
+        <p class="app-header__eyebrow">Наш архив</p>
+        <h1 class="app-header__title">Кино<em>архив</em></h1>
+      </div>
+      <div class="app-header__stat">
+        <span class="app-header__stat-num" id="statCount">0</span>
+        <span class="app-header__stat-label">фильмов</span>
       </div>
     </div>
+
+    <nav class="tabs" id="tabs">
+      <div class="tab-indicator" id="tabIndicator"></div>
+      <button class="tab is-active" data-filter="all">Все</button>
+      <button class="tab" data-filter="watch">Хочу</button>
+      <button class="tab" data-filter="watched">Смотрено</button>
+    </nav>
   </header>
 
-  <section class="section crew">
-    <div class="container reveal">
-      <h2 class="section-title">Кто мы такие</h2>
-      <div class="crew-grid">
-        
-        <article class="crew-card">
-          <!-- Обертка для эффекта стикера -->
-          <div class="crew-card__img-wrap">
-            <div class="crew-card__img">
-              <img src="https://picsum.photos/100/100?random=5" alt="Друг 1">
-            </div>
-          </div>
-          <div class="crew-card__info">
-            <h3>Азамат</h3>
-            <p>Главный по мемам и поеданию шаурмы в 3 часа ночи.</p>
-          </div>
-          <div class="crew-card__tag">Душа компании</div>
-        </article>
+  <main class="content">
+    <div class="list" id="list"></div>
 
-        <article class="crew-card">
-          <div class="crew-card__img-wrap">
-            <div class="crew-card__img">
-              <img src="https://picsum.photos/100/100?random=6" alt="Друг 2">
-            </div>
-          </div>
-          <div class="crew-card__info">
-            <h3>Бек</h3>
-            <p>Тот, кто всегда говорит «я на месте», когда он ещё дома.</p>
-          </div>
-          <div class="crew-card__tag">Главный тормоз</div>
-        </article>
-
-        <article class="crew-card">
-          <div class="crew-card__img-wrap">
-            <div class="crew-card__img">
-              <img src="https://picsum.photos/100/100?random=7" alt="Друг 3">
-            </div>
-          </div>
-          <div class="crew-card__info">
-            <h3>Данияр</h3>
-            <p>Может уснуть где угодно. Даже на вечеринке в честь своего др.</p>
-          </div>
-          <div class="crew-card__tag">Спящая красавица</div>
-        </article>
-
-      </div>
+    <div class="empty" id="empty" hidden>
+      <div class="empty__icon">🎬</div>
+      <h2 class="empty__title">Архив пуст</h2>
+      <p class="empty__text">Добавьте первый фильм, который хотите посмотреть вместе.</p>
+      <button class="btn btn--primary empty__cta" id="emptyAddBtn">Добавить фильм</button>
     </div>
-  </section>
+  </main>
 
-  <section class="section moments">
-    <div class="container reveal">
-      <h2 class="section-title">Наши моменты</h2>
-      <p class="section-subtitle">(нажми на фото, чтобы рассмотреть)</p>
-      
-      <div class="polaroid-grid">
-        <div class="polaroid" onclick="this.classList.toggle('active')">
-          <img src="https://picsum.photos/300/300?random=8" alt="Момент 1">
-          <div class="polaroid__caption">Тот самый шашлык</div>
-        </div>
+  <button class="fab" id="fab" aria-label="Добавить фильм">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+      <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+    </svg>
+  </button>
 
-        <div class="polaroid p-tilt" onclick="this.classList.toggle('active')">
-          <img src="https://picsum.photos/300/300?random=9" alt="Момент 2">
-          <div class="polaroid__caption">Когда забыли ключи</div>
-        </div>
+  <div class="sheet-backdrop" id="backdrop"></div>
 
-        <div class="polaroid" onclick="this.classList.toggle('active')">
-          <img src="https://picsum.photos/300/300?random=10" alt="Момент 3">
-          <div class="polaroid__caption">Сон на парах</div>
+  <section class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet__handle"></div>
+    <h2 class="sheet__title" id="sheetTitle">Новый фильм</h2>
+
+    <form class="form" id="form">
+      <label class="field">
+        <span class="field__label">Название фильма</span>
+        <input class="field__input" type="text" id="inputTitle"
+               placeholder="Например, Интерстеллар" autocomplete="off" maxlength="120" required />
+      </label>
+
+      <div class="field">
+        <span class="field__label">Статус</span>
+        <div class="segmented" id="statusSegmented">
+          <button type="button" class="segmented__btn is-active" data-status="watch">Хочу посмотреть</button>
+          <button type="button" class="segmented__btn" data-status="watched">Смотрено</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section generator">
-    <div class="container reveal">
-      <div class="generator__box">
-        <h2>Генератор цитат</h2>
-        <p>Нажми на кнопку, чтобы вспомнить, как мы общаемся.</p>
-        
-        <div class="quote-display" id="quoteDisplay">
-          Нажми на кнопку ниже...
-        </div>
-
-        <button id="generateBtn" class="btn">Сгенерировать мем</button>
+      <div class="field" id="ratingField" hidden>
+        <span class="field__label">Ваша оценка</span>
+        <div class="stars stars--input" id="starsInput"></div>
       </div>
-    </div>
+
+      <div class="form__actions">
+        <button type="button" class="btn btn--ghost" id="deleteBtn" hidden>Удалить</button>
+        <button type="submit" class="btn btn--primary">Сохранить</button>
+      </div>
+    </form>
   </section>
 
-  <footer class="footer">
-    <p>Сделано с любовью к нашей банде ♥</p>
-    <p class="footer__small">И да, тот самый чат никогда не умрёт.</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
