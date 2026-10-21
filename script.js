@@ -1,5 +1,4 @@
-// Массив ваших мемов и цитат
-// Потом просто добавишь сюда новые строки
+// Массив ваших мемов
 const memes = [
   "«Кинул на карту 100 рублей» — скинул 10 копеек",
   "Кто-то: «Давайте без фанатизма». Тоже кто-то: *заказывает 10 шаурм*",
@@ -16,7 +15,7 @@ const memes = [
 const generateBtn = document.getElementById('generateBtn');
 const quoteDisplay = document.getElementById('quoteDisplay');
 
-// Эффект печатной машинки для красоты
+// Эффект печатной машинки
 function typeWriter(text, element, speed = 30) {
   element.innerHTML = '';
   element.style.opacity = '1';
@@ -27,23 +26,44 @@ function typeWriter(text, element, speed = 30) {
       element.innerHTML += text.charAt(i);
       i++;
       setTimeout(type, speed);
+    } else {
+      generateBtn.disabled = false;
+      generateBtn.textContent = "Ещё мем!";
     }
   }
   type();
 }
 
 generateBtn.addEventListener('click', () => {
-  // Блокируем кнопку на время анимации
   generateBtn.disabled = true;
+  generateBtn.textContent = "Печатает...";
+  quoteDisplay.style.opacity = '0.5'; // Легкое затухание перед печатью
   
-  // Выбираем случайный мем
-  const randomMeme = memes[Math.floor(Math.random() * memes.length)];
-  
-  // Запускаем печать
-  typeWriter(randomMeme, quoteDisplay, 20);
-  
-  // Разблокируем кнопку через секунду
   setTimeout(() => {
-    generateBtn.disabled = false;
-  }, 1000);
+    const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+    typeWriter(randomMeme, quoteDisplay, 25);
+  }, 300);
+});
+
+
+// ================= АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ =================
+// Настраиваем Intersection Observer для отслеживания появления элементов
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15 // Срабатывает, когда 15% элемента видно на экране
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target); // Отключаем наблюдение после появления
+    }
+  });
+}, observerOptions);
+
+// Находим все элементы с классом .reveal и начинаем за ними следить
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
 });
